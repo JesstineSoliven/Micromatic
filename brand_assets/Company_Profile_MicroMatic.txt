@@ -6,11 +6,11 @@
 
 # Company Overview
 
-**Company Name:** *(MicroMatic)*
+**Company Name:** *(CoreMatic)*
 **Industry:** Artificial Intelligence, Automation, and Digital Design
 **Founded:** *(2026)*
 **Headquarters:** *(Manila, Philippines)*
-**Website:** *(www.micromatic.com)*
+**Website:** *(www.corematic.com)*
 
 *(Company Name)* is a technology-driven digital services company specializing in **Artificial Intelligence (AI) automation, Robotic Process Automation (RPA), workflow automation, and professional graphic design solutions.**
 

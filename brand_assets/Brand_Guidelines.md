@@ -8,7 +8,7 @@
 
 ### Brand Name
 
-*(MICROMATIC)*
+*(COREMATIC)*
 
 ### Tagline
 

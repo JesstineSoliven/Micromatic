@@ -71,10 +71,10 @@ http.createServer((req, res) => {
           await Promise.all([
             // Notification to owner
             transporter.sendMail({
-              from:    `"MicroMatic Contact" <${process.env.SMTP_USER}>`,
+              from:    `"CoreMatic Contact" <${process.env.SMTP_USER}>`,
               to,
               replyTo: from_email,
-              subject: `New Enquiry from ${esc(from_name)} — MicroMatic`,
+              subject: `New Enquiry from ${esc(from_name)} — CoreMatic`,
               html: `
                 <h2 style="color:#5B57E7">New Contact Form Submission</h2>
                 <p><strong>Name:</strong> ${esc(from_name)}</p>
@@ -87,15 +87,15 @@ http.createServer((req, res) => {
             }),
             // Auto-reply to submitter
             transporter.sendMail({
-              from:    `"MicroMatic" <${process.env.SMTP_USER}>`,
+              from:    `"CoreMatic" <${process.env.SMTP_USER}>`,
               to:      from_email,
-              subject: 'Thanks for reaching out — MicroMatic',
+              subject: 'Thanks for reaching out — CoreMatic',
               html: `
                 <p>Hi ${esc(from_name)},</p>
-                <p>Thank you for getting in touch with <strong>MicroMatic</strong>!
+                <p>Thank you for getting in touch with <strong>CoreMatic</strong>!
                 We've received your enquiry and will get back to you within
                 <strong>24 hours</strong>.</p>
-                <p>Best regards,<br>The MicroMatic Team</p>
+                <p>Best regards,<br>The CoreMatic Team</p>
               `,
             }),
           ]);
@@ -127,5 +127,5 @@ http.createServer((req, res) => {
     res.end(data);
   });
 }).listen(PORT, () => {
-  console.log(`MicroMatic server running at http://localhost:${PORT}`);
+  console.log(`CoreMatic server running at http://localhost:${PORT}`);
 });
