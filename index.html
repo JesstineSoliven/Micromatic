@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('YOUR_PUBLIC_KEY');</script>
   <script>
     tailwind.config = {
       theme: {
@@ -1217,26 +1219,26 @@
             <div>
               <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;
                      margin-bottom:8px;letter-spacing:0.03em;">Full Name</label>
-              <input type="text" class="form-input" placeholder="Your name" required />
+              <input type="text" name="from_name" class="form-input" placeholder="Your name" required />
             </div>
             <div>
               <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;
                      margin-bottom:8px;letter-spacing:0.03em;">Email Address</label>
-              <input type="email" class="form-input" placeholder="your@email.com" required />
+              <input type="email" name="from_email" class="form-input" placeholder="your@email.com" required />
             </div>
           </div>
 
           <div style="margin-bottom:16px;">
             <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;
                    margin-bottom:8px;letter-spacing:0.03em;">Company Name</label>
-            <input type="text" class="form-input" placeholder="Your company" />
+            <input type="text" name="company" class="form-input" placeholder="Your company" />
           </div>
 
           <div style="margin-bottom:16px;">
             <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;
                    margin-bottom:8px;letter-spacing:0.03em;">Service Interested In</label>
             <div style="position:relative;">
-              <select class="form-input" style="cursor:pointer;padding-right:40px;">
+              <select name="service" class="form-input" style="cursor:pointer;padding-right:40px;">
                 <option value="" disabled selected style="background:#1a1a1a;">Select a service…</option>
                 <option value="ai-automation" style="background:#1a1a1a;">AI Automation Solutions</option>
                 <option value="rpa" style="background:#1a1a1a;">Robotic Process Automation (RPA)</option>
@@ -1254,7 +1256,7 @@
           <div style="margin-bottom:24px;">
             <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;
                    margin-bottom:8px;letter-spacing:0.03em;">Message</label>
-            <textarea class="form-input" rows="4" placeholder="Tell us about your business and what you'd like to automate…"
+            <textarea name="message" class="form-input" rows="4" placeholder="Tell us about your business and what you'd like to automate…"
               style="resize:vertical;min-height:110px;"></textarea>
           </div>
 
@@ -1266,12 +1268,21 @@
             </svg>
           </button>
 
-          <!-- Success state (hidden by default) -->
+          <!-- Success state -->
           <div id="contact-success" style="display:none;margin-top:18px;
                background:rgba(97,206,112,0.1);border:1px solid rgba(97,206,112,0.3);
                border-radius:10px;padding:14px 18px;text-align:center;">
             <p style="font-size:14px;color:#61CE70;font-weight:500;">
               ✓ Message sent! We'll be in touch within 24 hours.
+            </p>
+          </div>
+
+          <!-- Error state -->
+          <div id="contact-error" style="display:none;margin-top:18px;
+               background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);
+               border-radius:10px;padding:14px 18px;text-align:center;">
+            <p style="font-size:14px;color:#f87171;font-weight:500;">
+              ✕ Something went wrong. Please try again or email us at hello@micromatic.com
             </p>
           </div>
         </form>
@@ -1409,17 +1420,49 @@
   });
 
   // ── Contact form ──────────────────────────────────────────────
+  // Replace YOUR_SERVICE_ID, YOUR_NOTIFICATION_TEMPLATE_ID, YOUR_AUTOREPLY_TEMPLATE_ID
+  // with real values from your EmailJS dashboard (emailjs.com).
+  // YOUR_PUBLIC_KEY is set above in emailjs.init().
+  const EMAILJS_SERVICE_ID            = 'YOUR_SERVICE_ID';
+  const EMAILJS_NOTIFICATION_TEMPLATE = 'YOUR_NOTIFICATION_TEMPLATE_ID';
+  const EMAILJS_AUTOREPLY_TEMPLATE    = 'YOUR_AUTOREPLY_TEMPLATE_ID';
+
   function handleContactSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending…';
+    const form      = e.target;
+    const btn       = form.querySelector('button[type="submit"]');
+    const successEl = document.getElementById('contact-success');
+    const errorEl   = document.getElementById('contact-error');
+
+    // Loading state
+    btn.innerHTML = 'Sending…';
     btn.style.opacity = '0.7';
     btn.disabled = true;
-    setTimeout(() => {
+    errorEl.style.display = 'none';
+
+    const params = {
+      from_name:  form.querySelector('[name="from_name"]').value,
+      from_email: form.querySelector('[name="from_email"]').value,
+      company:    form.querySelector('[name="company"]').value,
+      service:    form.querySelector('[name="service"]').value,
+      message:    form.querySelector('[name="message"]').value,
+    };
+
+    Promise.all([
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFICATION_TEMPLATE, params),
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE,    params),
+    ])
+    .then(() => {
       btn.style.display = 'none';
-      document.getElementById('contact-success').style.display = 'block';
-      e.target.reset();
-    }, 900);
+      successEl.style.display = 'block';
+      form.reset();
+    })
+    .catch(() => {
+      btn.innerHTML = 'Send Message ↗';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+      errorEl.style.display = 'block';
+    });
   }
 
   // ── Nav scroll opacity ────────────────────────────────────────
