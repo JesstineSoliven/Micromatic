@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — CoreMatic</title>
+  <meta name="description" content="Learn about CoreMatic — our story, background, and mission to help businesses work smarter through automation and digital solutions." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:       '#131313',
+            bg2:      '#0e0e0e',
+            bg3:      '#0a0a0a',
+            card:     '#1a1a1a',
+            card2:    '#1a1a2e',
+            primary:  '#5B57E7',
+            pfrom:    '#A493FF',
+            pto:      '#72BEF9',
+            muted:    '#676767',
+            subtle:   '#9ca3af',
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #5B57E7;
+      --gradient-color-from: #A493FF;
+      --gradient-color-center: #5B57E7;
+      --gradient-color-to: #72BEF9;
+      --body_bg-color: #131313;
+      --third-color: #676767;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #131313;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.58824;
+      color: #676767;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::-webkit-scrollbar { width: 10px; }
+    body::-webkit-scrollbar-thumb {
+      background: #2e2e2e;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    body::-webkit-scrollbar-track { box-shadow: inset 0 0 6px rgba(0,0,0,.2); }
+    :focus-visible { outline: 2px solid #5B57E7; outline-offset: 3px; border-radius: 3px; }
+
+    .grad-text {
+      background: linear-gradient(90deg, #A493FF 0%, #5B57E7 50%, #72BEF9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-bg {
+      background: linear-gradient(135deg, #A493FF 0%, #5B57E7 55%, #72BEF9 100%);
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, #5B57E7 0%, #7B6EFF 100%);
+      padding: 9px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-nav:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-nav:active { transform: translateY(0); }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #676767;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-btn:hover {
+      background: rgba(91,87,231,0.18);
+      border-color: rgba(91,87,231,0.35);
+      color: #A493FF;
+    }
+
+    .foot-link {
+      font-size: 14px;
+      color: #676767;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .foot-link:hover { color: #fff; }
+
+    /* About page specific */
+    .about-card {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 40px;
+      animation: fade-up 0.6s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .about-card + .about-card { margin-top: 24px; }
+
+    .tech-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(91,87,231,0.1);
+      border: 1px solid rgba(91,87,231,0.25);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #A493FF;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #5B57E7 0%, #7B6EFF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .bullet-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    .bullet-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #5B57E7;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(91,87,231,0.3) 30%, rgba(91,87,231,0.3) 70%, transparent);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-center { display: none !important; }
+      .about-card { padding: 28px 24px; }
+    }
+    @media (max-width: 1024px) {
+      .foot-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .foot-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                                  -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;
+     background:rgba(19,19,19,0.88);
+     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+     border-bottom:1px solid rgba(255,255,255,0.06);
+     transition:background 0.3s;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 28px;height:70px;
+       display:flex;align-items:center;justify-content:space-between;gap:32px;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0;">
+      <div style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;"
+        class="grad-bg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M2 12l10 5 10-5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span style="font-weight:700;font-size:18px;color:#fff;letter-spacing:-0.02em;">CoreMatic</span>
+    </a>
+
+    <!-- Center nav links -->
+    <div class="nav-center" style="display:flex;align-items:center;gap:32px;">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/#features" class="nav-link">Features</a>
+      <a href="/#services" class="nav-link">Services</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+       <a href="about.html" class="nav-link">About Us</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- PAGE HEADER                                                 -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section style="padding:160px 28px 80px;position:relative;overflow:hidden;">
+
+  <!-- Background glow -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);
+       width:800px;height:500px;pointer-events:none;z-index:0;
+       background:radial-gradient(ellipse at 50% 0%, rgba(91,87,231,0.18) 0%, rgba(91,87,231,0.06) 45%, transparent 70%);"></div>
+
+  <div style="max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center;">
+
+    <!-- Eyebrow badge -->
+    <div style="display:inline-flex;align-items:center;gap:7px;
+         background:rgba(91,87,231,0.12);border:1px solid rgba(91,87,231,0.32);
+         border-radius:50px;padding:5px 14px;margin-bottom:28px;">
+      <div style="width:6px;height:6px;border-radius:50%;background:#5B57E7;"></div>
+      <span style="font-size:13px;font-weight:500;color:#A493FF;">Our Story</span>
+    </div>
+
+    <h1 style="font-size:clamp(40px,6vw,64px);font-weight:700;color:#fff;
+         letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px;">
+      About <span class="grad-text">CoreMatic</span>
+    </h1>
+    <p style="font-size:18px;color:#9ca3af;line-height:1.7;max-width:560px;margin:0 auto;">
+      Automate. Design. Transform.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CONTENT                                                     -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<section style="padding:0 28px 100px;">
+  <div style="max-width:760px;margin:0 auto;">
+
+    <!-- ── Section 1: About Corematic ────────────────────────── -->
+    <div class="about-card" style="animation-delay:0.05s;">
+      <h2 style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        About Corematic
+      </h2>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        Corematic was founded with a simple goal: <strong style="color:#e5e7eb;">help businesses work smarter through automation and intelligent digital solutions.</strong>
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        The company started from years of hands-on experience in <strong style="color:#e5e7eb;">process automation, workflow optimization, and digital development</strong>. Before founding Corematic, the founder worked as a <strong style="color:#e5e7eb;">Robotic Process Automation (RPA) developer</strong>, building automation solutions that streamline business operations and eliminate repetitive manual work.
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        Over time, it became clear that many organizations — especially <strong style="color:#e5e7eb;">small and growing businesses</strong> — spend countless hours on repetitive tasks such as data entry, report preparation, file processing, and system updates. These activities consume valuable time that could instead be spent on growing the business, serving customers, and developing new opportunities.
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;">
+        Corematic was created to bridge that gap. By combining expertise in <strong style="color:#e5e7eb;">AI automation, robotic process automation (RPA), workflow automation, and digital design</strong>, Corematic helps organizations simplify complex processes and introduce smarter ways of working.
+      </p>
+    </div>
+
+    <div class="section-divider" style="margin:24px 0;"></div>
+
+    <!-- ── Section 2: Our Background ─────────────────────────── -->
+    <div class="about-card" style="animation-delay:0.1s;">
+      <h2 style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        Our Background
+      </h2>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:24px;">
+        The foundation of Corematic comes from real-world experience designing and implementing automation solutions in professional environments. The founder has spent several years developing automation systems using technologies such as:
+      </p>
+
+      <!-- Tech pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;">
+        <span class="tech-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          Robotic Process Automation (RPA)
+        </span>
+        <span class="tech-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          AI-Powered Workflow Tools
+        </span>
+        <span class="tech-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Microsoft Power Automate
+        </span>
+        <span class="tech-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Python Automation Frameworks
+        </span>
+        <span class="tech-pill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Intelligent Data Processing
+        </span>
+      </div>
+
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        These solutions have helped teams reduce manual work, improve efficiency, and streamline operations across multiple business processes.
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;">
+        Prior to working in automation, the founder also worked as a <strong style="color:#e5e7eb;">graphic artist</strong>, bringing a strong foundation in visual communication and digital design. This unique combination of <strong style="color:#e5e7eb;">technology and design</strong> allows Corematic to deliver solutions that are both <strong style="color:#e5e7eb;">functional and visually effective.</strong>
+      </p>
+    </div>
+
+    <div class="section-divider" style="margin:24px 0;"></div>
+
+    <!-- ── Section 3: Helping Small Businesses ────────────────── -->
+    <div class="about-card" style="animation-delay:0.15s;">
+      <h2 style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        Helping Small Businesses Work Smarter
+      </h2>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:24px;">
+        Many small businesses operate with limited resources, small teams, and growing workloads. Often, employees spend a large portion of their time performing repetitive administrative tasks that could easily be automated.
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:20px;">
+        Corematic helps small businesses by introducing practical automation solutions that:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Reduce repetitive manual work</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Improve operational efficiency</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Save valuable time for business owners and employees</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Reduce human errors in daily processes</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Allow teams to focus on higher-value activities</span></div>
+      </div>
+
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:20px;">
+        Examples of tasks that can be automated include:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Data entry between systems</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Generating reports automatically</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Processing emails and attachments</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Updating business records</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>File and document processing</span></div>
+        <div class="bullet-item"><div class="bullet-dot"></div><span>Workflow approvals and notifications</span></div>
+      </div>
+
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;">
+        Instead of hiring additional staff to manage repetitive work, businesses can use automation to <strong style="color:#e5e7eb;">scale their operations efficiently.</strong>
+      </p>
+    </div>
+
+    <div class="section-divider" style="margin:24px 0;"></div>
+
+    <!-- ── Section 4: Our Approach ────────────────────────────── -->
+    <div class="about-card" style="animation-delay:0.2s;">
+      <h2 style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        Our Approach
+      </h2>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:28px;">
+        At Corematic, we believe that automation should be <strong style="color:#e5e7eb;">practical, scalable, and accessible</strong>, even for smaller organizations.
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>
+            <p style="font-size:15px;color:#e5e7eb;font-weight:500;line-height:1.5;">Understanding how the business currently operates</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>
+            <p style="font-size:15px;color:#e5e7eb;font-weight:500;line-height:1.5;">Identifying repetitive and time-consuming tasks</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div>
+            <p style="font-size:15px;color:#e5e7eb;font-weight:500;line-height:1.5;">Designing automation solutions tailored to the workflow</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div>
+            <p style="font-size:15px;color:#e5e7eb;font-weight:500;line-height:1.5;">Implementing reliable systems that integrate with existing tools</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div>
+            <p style="font-size:15px;color:#e5e7eb;font-weight:500;line-height:1.5;">Continuously improving processes as the business grows</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;padding:20px 24px;background:rgba(91,87,231,0.08);
+           border:1px solid rgba(91,87,231,0.2);border-radius:12px;">
+        <p style="font-size:15px;color:#9ca3af;line-height:1.75;font-style:italic;">
+          The goal is not just to automate tasks — but to <strong style="color:#A493FF;">create smarter and more efficient business operations.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider" style="margin:24px 0;"></div>
+
+    <!-- ── Section 5: Looking Ahead ──────────────────────────── -->
+    <div class="about-card" style="animation-delay:0.25s;">
+      <h2 style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        Looking Ahead
+      </h2>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        As technology continues to evolve, automation and artificial intelligence will play a larger role in how businesses operate.
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;margin-bottom:16px;">
+        Corematic aims to help organizations — especially small and growing businesses — take advantage of these technologies to remain <strong style="color:#e5e7eb;">competitive, efficient, and future-ready.</strong>
+      </p>
+      <p style="font-size:15px;color:#9ca3af;line-height:1.75;">
+        By combining <strong style="color:#e5e7eb;">automation expertise, intelligent systems, and modern digital solutions</strong>, Corematic helps businesses transform the way work gets done.
+      </p>
+
+      <!-- CTA -->
+      <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="/#contact" style="display:inline-flex;align-items:center;gap:8px;
+             font-weight:600;font-size:15px;color:#fff;
+             background:linear-gradient(135deg,#5B57E7 0%,#7B6EFF 100%);
+             padding:13px 26px;border-radius:10px;text-decoration:none;
+             transition:opacity 0.2s,transform 0.2s cubic-bezier(0.22,1,0.36,1),box-shadow 0.2s;
+             box-shadow:0 0 0 0 rgba(91,87,231,0);"
+           onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(91,87,231,0.35)'"
+           onmouseout="this.style.opacity='1';this.style.transform='translateY(0)';this.style.boxShadow='0 0 0 0 rgba(91,87,231,0)'">
+          Get in Touch
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/" style="display:inline-flex;align-items:center;gap:8px;
+             font-weight:500;font-size:15px;color:#fff;
+             background:rgba(255,255,255,0.04);
+             padding:12px 26px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);text-decoration:none;
+             transition:background 0.2s,border-color 0.2s,transform 0.2s cubic-bezier(0.22,1,0.36,1);"
+           onmouseover="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(255,255,255,0.12)';this.style.transform='translateY(0)'">
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<footer style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.06);
+     padding:60px 0 28px;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 28px;">
+
+    <div class="foot-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+         gap:40px;margin-bottom:52px;">
+
+      <!-- Brand column -->
+      <div>
+        <a href="/" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;margin-bottom:18px;">
+          <div style="width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;" class="grad-bg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span style="font-weight:700;font-size:18px;color:#fff;letter-spacing:-0.02em;">CoreMatic</span>
+        </a>
+        <p style="font-size:14px;color:#676767;line-height:1.7;max-width:250px;margin-bottom:22px;">
+          AI automation and digital solutions for modern businesses. Automate. Design. Transform.
+        </p>
+        <p style="font-size:13px;color:#676767;margin-bottom:18px;">Manila, Philippines &nbsp;·&nbsp; www.corematic.com</p>
+        <div style="display:flex;gap:10px;">
+          <a href="#" class="social-btn" aria-label="X / Twitter">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.26 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 style="font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;
+             letter-spacing:0.08em;margin-bottom:18px;">Services</h4>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <a href="/#services" class="foot-link">AI Automation</a>
+          <a href="/#services" class="foot-link">RPA Solutions</a>
+          <a href="/#services" class="foot-link">Workflow Automation</a>
+          <a href="/#services" class="foot-link">Graphic Design</a>
+          <a href="/#services" class="foot-link">Digital Branding</a>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 style="font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;
+             letter-spacing:0.08em;margin-bottom:18px;">Company</h4>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <a href="/about.html" class="foot-link" style="color:#A493FF;">About</a>
+          <a href="#" class="foot-link">Blog</a>
+          <a href="#" class="foot-link">Careers</a>
+          <a href="#" class="foot-link">Press</a>
+          <a href="/#contact" class="foot-link">Contact</a>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 style="font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;
+             letter-spacing:0.08em;margin-bottom:18px;">Legal</h4>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <a href="#" class="foot-link">Privacy Policy</a>
+          <a href="#" class="foot-link">Terms of Service</a>
+          <a href="#" class="foot-link">Cookie Policy</a>
+          <a href="#" class="foot-link">GDPR</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;
+         display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+      <p style="font-size:13px;color:#676767;">© 2026 CoreMatic · Manila, Philippines. All rights reserved.</p>
+      <div style="display:flex;gap:24px;">
+        <a href="#" class="foot-link" style="font-size:13px;">Privacy Policy</a>
+        <a href="#" class="foot-link" style="font-size:13px;">Terms of Service</a>
+        <a href="#" class="foot-link" style="font-size:13px;">Cookies</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
