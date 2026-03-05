@@ -11,8 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init('%%EMAILJS_PUBLIC_KEY%%');</script>
   <script>
     tailwind.config = {
       theme: {
@@ -1420,11 +1418,6 @@
   });
 
   // ── Contact form ──────────────────────────────────────────────
-  // Credentials are injected at serve time from .env via serve.mjs.
-  const EMAILJS_SERVICE_ID            = '%%EMAILJS_SERVICE_ID%%';
-  const EMAILJS_NOTIFICATION_TEMPLATE = '%%EMAILJS_NOTIFICATION_TEMPLATE_ID%%';
-  const EMAILJS_AUTOREPLY_TEMPLATE    = '%%EMAILJS_AUTOREPLY_TEMPLATE_ID%%';
-
   function handleContactSubmit(e) {
     e.preventDefault();
     const form      = e.target;
@@ -1432,25 +1425,25 @@
     const successEl = document.getElementById('contact-success');
     const errorEl   = document.getElementById('contact-error');
 
-    // Loading state
     btn.innerHTML = 'Sending…';
     btn.style.opacity = '0.7';
     btn.disabled = true;
     errorEl.style.display = 'none';
 
-    const params = {
-      from_name:  form.querySelector('[name="from_name"]').value,
-      from_email: form.querySelector('[name="from_email"]').value,
-      company:    form.querySelector('[name="company"]').value,
-      service:    form.querySelector('[name="service"]').value,
-      message:    form.querySelector('[name="message"]').value,
-    };
-
-    Promise.all([
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFICATION_TEMPLATE, params),
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE,    params),
-    ])
-    .then(() => {
+    fetch('/api/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from_name:  form.querySelector('[name="from_name"]').value,
+        from_email: form.querySelector('[name="from_email"]').value,
+        company:    form.querySelector('[name="company"]').value,
+        service:    form.querySelector('[name="service"]').value,
+        message:    form.querySelector('[name="message"]').value,
+      }),
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (!data.ok) throw new Error();
       btn.style.display = 'none';
       successEl.style.display = 'block';
       form.reset();
