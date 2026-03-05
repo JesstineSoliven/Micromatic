@@ -12,7 +12,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init('YOUR_PUBLIC_KEY');</script>
+  <script>emailjs.init('%%EMAILJS_PUBLIC_KEY%%');</script>
   <script>
     tailwind.config = {
       theme: {
@@ -1420,12 +1420,10 @@
   });
 
   // ── Contact form ──────────────────────────────────────────────
-  // Replace YOUR_SERVICE_ID, YOUR_NOTIFICATION_TEMPLATE_ID, YOUR_AUTOREPLY_TEMPLATE_ID
-  // with real values from your EmailJS dashboard (emailjs.com).
-  // YOUR_PUBLIC_KEY is set above in emailjs.init().
-  const EMAILJS_SERVICE_ID            = 'YOUR_SERVICE_ID';
-  const EMAILJS_NOTIFICATION_TEMPLATE = 'YOUR_NOTIFICATION_TEMPLATE_ID';
-  const EMAILJS_AUTOREPLY_TEMPLATE    = 'YOUR_AUTOREPLY_TEMPLATE_ID';
+  // Credentials are injected at serve time from .env via serve.mjs.
+  const EMAILJS_SERVICE_ID            = '%%EMAILJS_SERVICE_ID%%';
+  const EMAILJS_NOTIFICATION_TEMPLATE = '%%EMAILJS_NOTIFICATION_TEMPLATE_ID%%';
+  const EMAILJS_AUTOREPLY_TEMPLATE    = '%%EMAILJS_AUTOREPLY_TEMPLATE_ID%%';
 
   function handleContactSubmit(e) {
     e.preventDefault();
